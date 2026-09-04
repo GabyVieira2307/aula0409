@@ -1728,3 +1728,1183 @@ a {
         gap: 8px;
     }
 }
+
+/* =====================================================
+   CADASTRO DE ALUNOS
+===================================================== */
+
+.cadastro-page {
+    min-height: calc(100vh - 82px);
+
+    max-width: 1350px;
+
+    margin: auto;
+
+    padding: 70px 60px 110px;
+}
+
+
+/* CABEÇALHO */
+
+.cadastro-header {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 45px;
+
+    padding-bottom: 30px;
+
+    border-bottom: 1px solid #25252b;
+}
+
+.cadastro-header h1 {
+    margin-top: 12px;
+
+    font-size: 43px;
+
+    letter-spacing: -1.5px;
+}
+
+.cadastro-header p {
+    margin-top: 12px;
+
+    max-width: 560px;
+
+    color: #777780;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.cadastro-number {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 5px;
+}
+
+.cadastro-number span {
+    color: #a855f7;
+
+    font-size: 45px;
+
+    font-weight: 900;
+
+    line-height: 1;
+}
+
+.cadastro-number small {
+    color: #55555d;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+/* CONTAINER */
+
+.cadastro-container {
+    display: grid;
+
+    grid-template-columns: 0.75fr 1.25fr;
+
+    min-height: 540px;
+
+    overflow: hidden;
+
+    background: #101013;
+
+    border: 1px solid #29292f;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+
+/* LADO ESQUERDO */
+
+.cadastro-info {
+    padding: 50px 45px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(124, 58, 237, 0.25),
+            transparent 45%
+        ),
+        linear-gradient(
+            145deg,
+            #1b0e2b,
+            #0c0c0f
+        );
+
+    border-right: 1px solid #29292f;
+}
+
+.cadastro-info::after {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    right: -130px;
+    bottom: -120px;
+
+    border: 1px solid rgba(168, 85, 247, 0.18);
+
+    border-radius: 50%;
+}
+
+.cadastro-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 35px;
+
+    background: rgba(168, 85, 247, 0.13);
+
+    border: 1px solid rgba(168, 85, 247, 0.25);
+
+    border-radius: 12px;
+
+    color: #a855f7;
+
+    font-size: 23px;
+}
+
+.cadastro-info > span {
+    color: #a855f7;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.cadastro-info h2 {
+    margin-top: 12px;
+
+    font-size: 32px;
+
+    letter-spacing: -1px;
+}
+
+.cadastro-info > p {
+    max-width: 300px;
+
+    margin-top: 15px;
+
+    color: #85858d;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+.info-line {
+    width: 100%;
+
+    height: 1px;
+
+    margin: 40px 0 25px;
+
+    background: #29292f;
+}
+
+.info-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 17px;
+}
+
+.info-item strong {
+    color: #a855f7;
+
+    font-size: 9px;
+}
+
+.info-item span {
+    color: #9999a2;
+
+    font-size: 11px;
+}
+
+
+/* LADO DO FORMULÁRIO */
+
+.cadastro-form-area {
+    padding: 50px 55px;
+
+    background: #0d0d10;
+}
+
+.form-title {
+    margin-bottom: 35px;
+}
+
+.form-title span {
+    color: #a855f7;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.form-title h2 {
+    margin-top: 10px;
+
+    font-size: 25px;
+}
+
+
+/* CAMPOS */
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+    flex: 1;
+}
+
+.form-group label {
+    color: #b5b5bc;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 16px;
+
+    background: #151519;
+
+    border: 1px solid #2b2b31;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    transition: 0.25s;
+}
+
+.form-group input::placeholder {
+    color: #55555d;
+}
+
+.form-group input:focus {
+    border-color: #7c3aed;
+
+    box-shadow:
+        0 0 0 3px rgba(124, 58, 237, 0.10);
+}
+
+.form-row {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 22px;
+}
+
+.form-group.full {
+    margin-top: 22px;
+}
+
+
+/* RODAPÉ DO FORM */
+
+.form-footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-top: 40px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #29292f;
+}
+
+.form-footer span {
+    color: #55555d;
+
+    font-size: 9px;
+}
+
+.form-footer button {
+    padding: 14px 21px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #7c3aed;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.form-footer button:hover {
+    background: #8b5cf6;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 30px rgba(124, 58, 237, 0.25);
+}
+
+.form-footer button strong {
+    margin-left: 8px;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE - CADASTRO
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .cadastro-page {
+        padding: 60px 30px 90px;
+    }
+
+    .cadastro-container {
+        grid-template-columns: 1fr;
+    }
+
+    .cadastro-info {
+        border-right: none;
+
+        border-bottom: 1px solid #29292f;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .cadastro-page {
+        padding: 45px 20px 70px;
+    }
+
+    .cadastro-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .cadastro-header h1 {
+        font-size: 34px;
+    }
+
+    .cadastro-number {
+        display: none;
+    }
+
+    .cadastro-info {
+        padding: 35px 28px;
+    }
+
+    .cadastro-form-area {
+        padding: 35px 25px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-footer {
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+    .form-footer button {
+        width: 100%;
+    }
+}
+
+/* =====================================================
+   LISTA DE ALUNOS
+===================================================== */
+
+.lista-page {
+    min-height: calc(100vh - 82px);
+
+    max-width: 1350px;
+
+    margin: auto;
+
+    padding: 70px 60px 110px;
+}
+
+
+/* CABEÇALHO */
+
+.lista-header {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 45px;
+
+    padding-bottom: 30px;
+
+    border-bottom: 1px solid #25252b;
+}
+
+.lista-header h1 {
+    margin-top: 12px;
+
+    font-size: 43px;
+
+    letter-spacing: -1.5px;
+}
+
+.lista-header p {
+    margin-top: 12px;
+
+    max-width: 560px;
+
+    color: #777780;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.lista-count {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 6px;
+}
+
+.lista-count strong {
+    color: #a855f7;
+
+    font-size: 45px;
+
+    line-height: 1;
+
+    font-weight: 900;
+}
+
+.lista-count span {
+    color: #55555d;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+/* CONTAINER */
+
+.lista-container {
+    overflow: hidden;
+
+    background: #101013;
+
+    border: 1px solid #29292f;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+
+/* TOPO DA LISTA */
+
+.lista-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 30px 35px;
+
+    border-bottom: 1px solid #29292f;
+}
+
+.lista-top span {
+    color: #a855f7;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.lista-top h2 {
+    margin-top: 8px;
+
+    font-size: 22px;
+}
+
+.lista-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 13px;
+
+    background: #151519;
+
+    border: 1px solid #29292f;
+
+    border-radius: 20px;
+
+    color: #777780;
+
+    font-size: 9px;
+}
+
+.lista-status span {
+    width: 6px;
+    height: 6px;
+
+    padding: 0;
+
+    background: #a855f7;
+
+    border-radius: 50%;
+}
+
+
+/* TABELA */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.lista-container table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.lista-container thead {
+    background: #131316;
+}
+
+.lista-container th {
+    padding: 19px 25px;
+
+    color: #5e5e66;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+.lista-container td {
+    padding: 23px 25px;
+
+    border-top: 1px solid #24242a;
+
+    color: #9999a2;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+}
+
+.lista-container tbody tr {
+    transition: 0.25s;
+}
+
+.lista-container tbody tr:hover {
+    background: #15151a;
+}
+
+
+/* ID */
+
+.aluno-id {
+    color: #a855f7;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+
+/* ALUNO */
+
+.aluno-nome {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.aluno-nome strong {
+    color: #e4e4e8;
+
+    font-size: 12px;
+}
+
+.aluno-avatar {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        #7c3aed,
+        #4c1d95
+    );
+
+    border-radius: 10px;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+
+/* SÉRIE */
+
+.serie-badge {
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    background: rgba(168, 85, 247, 0.10);
+
+    border: 1px solid rgba(168, 85, 247, 0.22);
+
+    border-radius: 7px;
+
+    color: #b477f4;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+
+/* RA */
+
+.ra-number {
+    color: #b5b5bc;
+
+    font-family: monospace;
+
+    font-size: 11px;
+}
+
+
+/* AÇÕES */
+
+.acoes {
+    display: flex;
+
+    gap: 8px;
+}
+
+.acoes button {
+    padding: 9px 13px;
+
+    border-radius: 7px;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.btn-editar {
+    background: transparent;
+
+    border: 1px solid #37373e;
+
+    color: #aaaab2;
+}
+
+.btn-editar:hover {
+    background: #7c3aed;
+
+    border-color: #7c3aed;
+
+    color: white;
+}
+
+.btn-deletar {
+    background: transparent;
+
+    border: 1px solid #39252d;
+
+    color: #a87582;
+}
+
+.btn-deletar:hover {
+    background: #4b1d2b;
+
+    border-color: #5f2939;
+
+    color: #e8a8b8;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 900px) {
+
+    .lista-page {
+        padding: 60px 30px 90px;
+    }
+
+    .lista-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .lista-count {
+        align-items: flex-start;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .lista-page {
+        padding: 45px 20px 70px;
+    }
+
+    .lista-header h1 {
+        font-size: 34px;
+    }
+
+    .lista-count strong {
+        font-size: 35px;
+    }
+
+    .lista-top {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 20px;
+
+        padding: 25px;
+    }
+
+    .lista-container td,
+    .lista-container th {
+        padding: 18px;
+    }
+
+    .acoes {
+        flex-direction: column;
+    }
+
+}
+/* =========================================
+   CADASTRO DE NOTAS
+========================================= */
+
+.cadnotas-page {
+    min-height: calc(100vh - 82px);
+    padding: 70px 60px 100px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.cadnotas-page h2 {
+    color: #ffffff;
+    font-size: 38px;
+    margin-bottom: 35px;
+    letter-spacing: -1px;
+}
+
+.cadnotas-form {
+    background: #101013;
+    border: 1px solid #29292f;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+.cadnotas-form label {
+    display: block;
+    margin-bottom: 9px;
+    margin-top: 20px;
+
+    color: #b5b5bc;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.cadnotas-form label:first-child {
+    margin-top: 0;
+}
+
+.cadnotas-form input {
+    width: 100%;
+    height: 50px;
+
+    padding: 0 15px;
+
+    background: #151519;
+    border: 1px solid #2b2b31;
+    border-radius: 9px;
+
+    outline: none;
+
+    color: #ffffff;
+    font-size: 13px;
+
+    transition: 0.25s;
+}
+
+.cadnotas-form input::placeholder {
+    color: #55555d;
+}
+
+.cadnotas-form input:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+.cadnotas-form button {
+    margin-top: 35px;
+
+    padding: 14px 25px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #7c3aed;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.cadnotas-form button:hover {
+    background: #8b5cf6;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.25);
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .cadnotas-page {
+        padding: 45px 20px 70px;
+    }
+
+    .cadnotas-page h2 {
+        font-size: 32px;
+    }
+
+    .cadnotas-form {
+        padding: 25px;
+    }
+
+}
+/* =========================================
+   LISTA DE NOTAS
+========================================= */
+
+.lista-page {
+    min-height: calc(100vh - 82px);
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 70px 60px 110px;
+}
+
+.lista-page h2 {
+    margin-bottom: 35px;
+
+    color: #ffffff;
+
+    font-size: 40px;
+    letter-spacing: -1px;
+}
+
+
+/* TABELA */
+
+.lista-page table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    overflow: hidden;
+
+    background: #101013;
+
+    border: 1px solid #29292f;
+
+    border-radius: 18px;
+
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+.lista-page thead {
+    background: #151519;
+}
+
+.lista-page th {
+    padding: 20px 22px;
+
+    color: #a855f7;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+.lista-page td {
+    padding: 22px;
+
+    border-top: 1px solid #29292f;
+
+    color: #b5b5bc;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+}
+
+.lista-page tbody tr {
+    transition: 0.25s;
+}
+
+.lista-page tbody tr:hover {
+    background: #16161b;
+}
+
+
+/* ID */
+
+.lista-page td:first-child {
+    color: #a855f7;
+
+    font-weight: bold;
+}
+
+
+/* NOME */
+
+.lista-page td:nth-child(2) {
+    color: #e4e4e8;
+
+    font-weight: bold;
+}
+
+
+/* NOTAS */
+
+.lista-page td:nth-child(3),
+.lista-page td:nth-child(4),
+.lista-page td:nth-child(5),
+.lista-page td:nth-child(6),
+.lista-page td:nth-child(7) {
+    color: #c4c4ca;
+}
+
+
+/* AÇÕES */
+
+.lista-page td:last-child {
+    white-space: nowrap;
+}
+
+.acoes {
+    display: flex;
+
+    gap: 8px;
+}
+
+.acoes button {
+    padding: 9px 13px;
+
+    border-radius: 7px;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+/* EDITAR */
+
+.btn-editar {
+    background: transparent;
+
+    border: 1px solid #37373e;
+
+    color: #aaaab2;
+}
+
+.btn-editar:hover {
+    background: #7c3aed;
+
+    border-color: #7c3aed;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+/* DELETAR */
+
+.btn-deletar {
+    background: transparent;
+
+    border: 1px solid #39252d;
+
+    color: #a87582;
+}
+
+.btn-deletar:hover {
+    background: #4b1d2b;
+
+    border-color: #5f2939;
+
+    color: #e8a8b8;
+
+    transform: translateY(-1px);
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1000px) {
+
+    .lista-page {
+        padding: 60px 30px 90px;
+    }
+
+    .lista-page {
+        overflow-x: auto;
+    }
+
+    .lista-page table {
+        min-width: 900px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .lista-page {
+        padding: 45px 20px 70px;
+    }
+
+    .lista-page h2 {
+        font-size: 32px;
+    }
+
+}
