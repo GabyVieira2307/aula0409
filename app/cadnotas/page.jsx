@@ -1,78 +1,170 @@
 'use client';
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import Header from "../components/header";
+import styles from "./cadnotas.module.css";
 
-export default function CadNotas(){
-    const [nomeAluno, setNomeAluno] = useState('');
-    const [t1, setT1] = useState('');
-    const [t2, setT2] = useState('');
-    const [n1, setN1] = useState('');
-    const [n2, setN2] = useState('');
-    const [n3, setN3] = useState('');
+export default function CadNotas() {
+    const [aluno_id, setAlunoId] = useState('');
+    const [t1, setT1] = useState('');
+    const [t2, setT2] = useState('');
+    const [n1, setN1] = useState('');
+    const [n2, setN2] = useState('');
+    const [n3, setN3] = useState('');
+    const [alunos, setAlunos] = useState([]);
 
-    return(
-        <>
-            <Header />
+    useEffect(() => {
+        buscarAlunos();
+    }, []);
 
-            <main className="cadnotas-page">
+    async function buscarAlunos() {
+        const resposta = await fetch("/api/alunos");
+        const dados = await resposta.json();
+        setAlunos(dados);
+    }
 
-                <h2>Cadastro de Notas</h2>
+    async function cadastraNotas(event) {
+        event.preventDefault();
 
-                <form action="" className="cadnotas-form">
+        const resposta = await fetch("/api/notas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                aluno_id,
+                t1,
+                t2,
+                n1,
+                n2,
+                n3
+            })
+        });
 
-                    <label htmlFor="nomeAluno">Nome aluno</label>
-                    <input
-                        id="nomeAluno"
-                        type="text"
-                        value={nomeAluno}
-                        onChange={(e) => setNomeAluno(e.target.value)}
-                    />
+        const dados = await resposta.json();
 
-                    <label htmlFor="t1">T1 (trabalho 1)</label>
-                    <input
-                        id="t1"
-                        type="number"
-                        value={t1}
-                        onChange={(e) => setT1(e.target.value)}
-                    />
+        alert(dados.mensagem || dados.erro);
 
-                    <label htmlFor="t2">T2 (trabalho 2)</label>
-                    <input
-                        id="t2"
-                        type="number"
-                        value={t2}
-                        onChange={(e) => setT2(e.target.value)}
-                    />
+        if (resposta.ok) {
+            setAlunoId('');
+            setT1('');
+            setT2('');
+            setN1('');
+            setN2('');
+            setN3('');
+        }
+    }
 
-                    <label htmlFor="n1">N1 (nota 1)</label>
-                    <input
-                        id="n1"
-                        type="number"
-                        value={n1}
-                        onChange={(e) => setN1(e.target.value)}
-                    />
+    return (
+        <>
+            <Header />
 
-                    <label htmlFor="n2">N2 (nota 2)</label>
-                    <input
-                        id="n2"
-                        type="number"
-                        value={n2}
-                        onChange={(e) => setN2(e.target.value)}
-                    />
+            <main className={styles.main}>
+                <section className={styles.container}>
+                    <div className={styles.painel}>
+                        <p className={styles.status}>
+                            SISTEMA ONLINE
+                        </p>
 
-                    <label htmlFor="n3">N3 (nota 3)</label>
-                    <input
-                        id="n3"
-                        type="number"
-                        value={n3}
-                        onChange={(e) => setN3(e.target.value)}
-                    />
+                        <h2>Cadastro de Notas</h2>
 
-                    <button>Salvar</button>
+                        <form
+                            className={styles.form}
+                            onSubmit={cadastraNotas}
+                        >
+                            <div className={styles.campo}>
+                                <label htmlFor="aluno_id">
+                                    ID do Aluno
+                                </label>
 
-                </form>
+                                <select
+                                    id="aluno_id"
+                                    value={aluno_id}
+                                    onChange={(e) =>
+                                        setAlunoId(e.target.value)
+                                    }
+                                    required
+                                >
+                                    <option value="">
+                                        Selecione um aluno
+                                    </option>
 
-            </main>
-        </>
-    )
+                                    {alunos.map((aluno) => (
+                                        <option
+                                            key={aluno.id_aluno}
+                                            value={aluno.id_aluno}
+                                        >
+                                            {aluno.nome} - RA {aluno.ra}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className={styles.campo}>
+                                <label htmlFor="t1">Trabalho 1</label>
+                                <input
+                                    id="t1"
+                                    type="text"
+                                    value={t1}
+                                    onChange={(e) => setT1(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            <div className={styles.campo}>
+                                <label htmlFor="t2">Trabalho 2</label>
+                                <input
+                                    id="t2"
+                                    type="text"
+                                    value={t2}
+                                    onChange={(e) => setT2(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            <div className={styles.campo}>
+                                <label htmlFor="n1">Nota 1</label>
+                                <input
+                                    id="n1"
+                                    type="number"
+                                    value={n1}
+                                    onChange={(e) => setN1(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            <div className={styles.campo}>
+                                <label htmlFor="n2">Nota 2</label>
+                                <input
+                                    id="n2"
+                                    type="number"
+                                    value={n2}
+                                    onChange={(e) => setN2(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            <div className={styles.campo}>
+                                <label htmlFor="n3">Nota 3</label>
+                                <input
+                                    id="n3"
+                                    type="number"
+                                    value={n3}
+                                    onChange={(e) => setN3(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            <button
+                                type="submit"
+                                className={styles.botao}
+                            >
+                                Salvar Nota
+                            </button>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </>
+    );
 }

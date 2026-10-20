@@ -1,13 +1,13 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
+  --background: #08080a;
+  --foreground: #101014;
 
-  --text-primary: #000;
-  --text-secondary: #666;
+  --text-primary: #ffffff;
+  --text-secondary: #a09baa;
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
+  --button-primary-hover: #6d28d9;
+  --button-secondary-hover: #21172f;
+  --button-secondary-border: #34303b;
 
   display: flex;
   flex: 1;
@@ -16,6 +16,7 @@
   justify-content: center;
   font-family: var(--font-geist-sans);
   background-color: var(--background);
+  color: var(--text-primary);
 }
 
 .main {
@@ -58,7 +59,7 @@
 
 .intro a {
   font-weight: 500;
-  color: var(--text-primary);
+  color: #c084fc;
 }
 
 .ctas {
@@ -76,7 +77,7 @@
   align-items: center;
   height: 40px;
   padding: 0 16px;
-  border-radius: 128px;
+  border-radius: 12px;
   border: 1px solid transparent;
   transition: 0.2s;
   cursor: pointer;
@@ -85,13 +86,15 @@
 }
 
 a.primary {
-  background: var(--text-primary);
-  color: var(--background);
+  background: linear-gradient(135deg, #9333ea, #6d28d9);
+  color: #ffffff;
   gap: 8px;
 }
 
 a.secondary {
   border-color: var(--button-secondary-border);
+  color: #c084fc;
+  background: transparent;
 }
 
 /* Enable hover only on non-touch devices */
@@ -103,7 +106,7 @@ a.secondary {
 
   a.secondary:hover {
     background: var(--button-secondary-hover);
-    border-color: transparent;
+    border-color: #9333ea;
   }
 }
 
@@ -121,23 +124,27 @@ a.secondary {
     line-height: 40px;
     letter-spacing: -1.92px;
   }
+
+  .ctas {
+    flex-wrap: wrap;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   .logo {
-    filter: invert();
+    filter: none;
   }
 
   .page {
-    --background: #000;
-    --foreground: #000;
+--background: #08080a;
+--foreground: #101014;
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
+--text-primary: #ffffff;
+--text-secondary: #a09baa;
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+ --button-primary-hover: #6d28d9;
+ --button-secondary-hover: #21172f;
+--button-secondary-border: #34303b;
   }
 }
 
@@ -147,4 +154,45 @@ a.secondary {
   background: color-mix(in srgb, currentColor 8%, transparent);
   padding: 0.1em 0.4em;
   border-radius: 6px;
+  color: #c084fc;
+}
+/* Visual SESI: preto e roxo */
+.main,
+.cadastro-page {
+    background: #08080a !important;
+    color: #ffffff;
+}
+
+.container,
+.painel,
+.cadastro-container,
+.cadastro-form-area {
+    background-color: #101014;
+    border-color: #29252f;
+}
+
+.status,
+.section-tag,
+.campo label,
+.form-group label {
+    color: #a855f7;
+}
+
+.campo input,
+.form-group input {
+    background: #0b0b0e;
+    color: #ffffff;
+    border: 1px solid #34303b;
+}
+
+.botao,
+.form-footer button {
+    background: linear-gradient(135deg, #9333ea, #6d28d9);
+    color: #ffffff;
+    border: none;
+}
+
+.botao:hover,
+.form-footer button:hover {
+    box-shadow: 0 0 18px rgba(147, 51, 234, 0.4);
 }
