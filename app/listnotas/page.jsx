@@ -1,14 +1,14 @@
 
 'use client';
 
-
 import { useState, useEffect } from "react";
 import Header from "../components/header";
-import styles from './listanotas.module.css';
 import { useRouter } from "next/navigation";
+import styles from "./listanotas.module.css";
 
 export default function ListNotas() {
     const [notas, setNotas] = useState([]);
+    const [carregando, setCarregando] = useState(true);
     const router = useRouter();
 
     useEffect(() => {
@@ -16,35 +16,54 @@ export default function ListNotas() {
     }, []);
 
     async function buscarNotas() {
-        const resposta = await fetch('/api/notas');
-        const dados = await resposta.json();
+        try {
+            const resposta = await fetch("/api/notas");
+            const dados = await resposta.json();
 
-        setNotas(dados);
+            if (!resposta.ok) {
+                throw new Error(dados.erro || "Erro ao buscar notas.");
+            }
+
+            setNotas(Array.isArray(dados) ? dados : []);
+        } catch (error) {
+            console.error("Erro ao buscar notas:", error);
+            alert("Não foi possível carregar as notas.");
+        } finally {
+            setCarregando(false);
+        }
     }
 
-    function editarNota(id) {
-        router.push(`/editanotas?id=${id}`);
+    function editarNota(id_nota) {
+        router.push(`/editanotas/${id_nota}`);
     }
 
-    async function excluirNota(id) {
-        if (!confirm('Deseja realmente excluir esta nota?')) {
+    async function excluirNota(id_nota) {
+        if (!confirm("Deseja realmente excluir esta nota?")) {
             return;
         }
 
-        const resposta = await fetch("/api/notas", {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ id: id })
-        });
+        try {
+            const resposta = await fetch("/api/notas", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id: Number(id_nota),
+                }),
+            });
 
-        const dados = await resposta.json();
+            const dados = await resposta.json();
 
-        alert(dados.mensagem || dados.erro);
+            if (!resposta.ok) {
+                throw new Error(dados.erro || "Erro ao excluir nota.");
+            }
 
-        if (resposta.ok) {
-            buscarNotas();
+            alert(dados.mensagem || "Nota excluída com sucesso!");
+            await buscarNotas();
+        } catch (error) {
+            console.error("Erro ao excluir nota:", error);
+            alert(error.message || "Não foi possível excluir a nota.");
         }
     }
 
@@ -53,24 +72,19 @@ export default function ListNotas() {
             <Header />
 
             <main className={styles.main}>
-
                 <section className={styles.tituloArea}>
                     <h2>Lista de Notas</h2>
-
                     <p>
                         Consulte todas as notas cadastradas no sistema.
                     </p>
                 </section>
 
                 <section className={styles.tabelaContainer}>
-
                     <table className={styles.tabela}>
-
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nome</th>
-                                <th>RA</th>
                                 <th>T1</th>
                                 <th>T2</th>
                                 <th>N1</th>
@@ -81,18 +95,20 @@ export default function ListNotas() {
                         </thead>
 
                         <tbody>
-                            {notas.length > 0 ? (
+                            {carregando ? (
+                                <tr>
+                                    <td colSpan="8">Carregando notas...</td>
+                                </tr>
+                            ) : notas.length > 0 ? (
                                 notas.map((nota) => (
                                     <tr key={nota.id_notas}>
                                         <td>{nota.id_notas}</td>
                                         <td>{nota.nome}</td>
-                                        <td>{nota.ra}</td>
                                         <td>{nota.t1}</td>
                                         <td>{nota.t2}</td>
                                         <td>{nota.n1}</td>
                                         <td>{nota.n2}</td>
                                         <td>{nota.n3}</td>
-
                                         <td>
                                             <button
                                                 type="button"
@@ -114,17 +130,14 @@ export default function ListNotas() {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="9">
+                                    <td colSpan="8">
                                         Nenhuma nota encontrada.
                                     </td>
                                 </tr>
                             )}
                         </tbody>
-
                     </table>
-
                 </section>
-
             </main>
         </>
     );
